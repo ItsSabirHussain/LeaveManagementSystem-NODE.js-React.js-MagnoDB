@@ -190,23 +190,25 @@ export default function Notifications(props) {
             <Container component="main" className={classes.main} maxWidth="sm">
               <div>
                 <h3>Agile Leave Management System</h3>
-                <table
-                  className="table table-striped"
-                  style={{ marginTop: 20 }}
-                >
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>ID</th>
-                      <th>Department</th>
-                      <th>Leave Date</th>
-                      <th>Status</th>
-                      <th>Reason</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>{allEmpList(leaveData)}</tbody>
-                </table>
+                <div class="col-md-3">
+                  <table
+                    className="table table-striped"
+                    style={{ marginTop: 20 }}
+                  >
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>ID</th>
+                        <th>Department</th>
+                        <th>Leave Date</th>
+                        <th>Status</th>
+                        <th>Reason</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>{allEmpList(leaveData)}</tbody>
+                  </table>
+                </div>
               </div>
             </Container>
           </Grid>
