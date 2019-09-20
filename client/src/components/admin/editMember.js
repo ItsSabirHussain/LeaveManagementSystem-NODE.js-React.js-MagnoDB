@@ -1,0 +1,230 @@
+import React, { useState, useEffect } from "react";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import { Link } from "react-router-dom";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import AddIcon from "@material-ui/icons/Add";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import axios from "axios";
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"Copyright © "}
+      <Link to="/" style={{ textDecoration: "none" }}>
+        The website{" "}
+      </Link>
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
+
+const useStyles = makeStyles(theme => ({
+  "@global": {
+    body: {
+      backgroundColor: theme.palette.common.white
+    }
+  },
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.primary.main
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(3)
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2)
+  }
+}));
+
+export default function EditMember(props) {
+  const classes = useStyles();
+  const [memInfo, setMemInfo] = React.useState({
+    FullName: "",
+    OfficeID: "",
+    ID: localStorage.getItem("editID"),
+    Email: "",
+    Key: "",
+    Phone: "",
+    Department: "",
+    Role: ""
+  });
+  useEffect(() => {
+    if (localStorage.getItem("adminTokken")) {
+    } else {
+      props.history.push("/emplogin");
+    }
+    if (memInfo.FullName === "") {
+      axios
+        .post("/getmember", { ID: localStorage.getItem("editID") })
+        .then(res => {
+          setMemInfo({
+            OfficeID: res.data.OfficeID,
+            FullName: res.data.Name,
+            Email: res.data.Email,
+            Phone: res.data.Phone,
+            Department: res.data.Department,
+            Role: res.data.Role,
+            ID: res.data.ID
+          });
+        })
+        .catch(error => console.log(error));
+    }
+  });
+
+  const onClick = e => {
+    axios
+      .post("/editmember", memInfo)
+      .then(res => {
+        props.history.push("/admindashboard");
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    localStorage.removeItem("editID");
+  };
+
+  return (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <AddIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Edit Member Details
+        </Typography>
+        <form className={classes.form} noValidate>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                autoComplete="fname"
+                name="Name"
+                variant="outlined"
+                required
+                fullWidth
+                id="Name"
+                label={"Name: " + memInfo.FullName}
+                autoFocus
+                onChange={e =>
+                  setMemInfo({ ...memInfo, FullName: e.target.value })
+                }
+              />
+            </Grid>
+
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="OfficeID"
+                label={"Office ID: " + memInfo.OfficeID}
+                name="OfficeID"
+                autoComplete="OfficeID"
+                onChange={e =>
+                  setMemInfo({ ...memInfo, OfficeID: e.target.value })
+                }
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="email"
+                label={"Email: " + memInfo.Email}
+                name="email"
+                autoComplete="email"
+                onChange={e =>
+                  setMemInfo({ ...memInfo, Email: e.target.value })
+                }
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="phone"
+                label={"Phone: " + memInfo.Phone}
+                name="phone"
+                autoComplete="phone"
+                onChange={e =>
+                  setMemInfo({ ...memInfo, Phone: e.target.value })
+                }
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="department"
+                label={"Department: " + memInfo.Department}
+                name="department"
+                autoComplete="department"
+                onChange={e =>
+                  setMemInfo({ ...memInfo, Department: e.target.value })
+                }
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="role"
+                label={"Role: " + memInfo.Role}
+                name="role"
+                autoComplete="role"
+                onChange={e => setMemInfo({ ...memInfo, Role: e.target.value })}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="Key"
+                label="Key"
+                type="password"
+                id="Key"
+                autoComplete="current-Key"
+                onChange={e => setMemInfo({ ...memInfo, Key: e.target.value })}
+              />
+            </Grid>
+            <Grid item xs={12}></Grid>
+          </Grid>
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={onClick}
+          >
+            Updates
+          </Button>
+          <Grid container justify="flex-end">
+            <Grid item></Grid>
+          </Grid>
+        </form>
+      </div>
+      <Box mt={5}>
+        <Copyright />
+      </Box>
+    </Container>
+  );
+}

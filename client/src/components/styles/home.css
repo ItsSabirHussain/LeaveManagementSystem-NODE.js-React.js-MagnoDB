@@ -1,0 +1,27 @@
+.App {
+  margin-top: -1.5%;
+  height: 78vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+}
+
+.App-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+@media (min-width: 650px) {
+  .App {
+    background-position: center center;
+  }
+
+  .App-content {
+    align-items: fix-end;
+    justify-content: center;
+  }
+}
