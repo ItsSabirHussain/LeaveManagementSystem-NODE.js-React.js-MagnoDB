@@ -114,6 +114,7 @@ export default function AllDepLeaves(props) {
       <td>{p.data.Date}</td>
       <td>{p.data.Reason}</td>
       <td>{p.data.Status}</td>
+      <td>{p.data.Type}</td>
     </tr>
   );
 
