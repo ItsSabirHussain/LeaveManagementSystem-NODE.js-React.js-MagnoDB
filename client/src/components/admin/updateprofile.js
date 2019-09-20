@@ -58,7 +58,7 @@ export default function UpdateProfile(props) {
     axios
       .post("/updateprofile", adminInfo)
       .then(res => {
-        props.history.push("/admindashboard");
+        props.history.push("/admindashboard/profile");
       })
       .catch(error => {
         console.log(error);
