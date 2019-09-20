@@ -97,7 +97,7 @@ router.route("/editmember").post(function(req, res) {
   Member.findOne({ ID: req.body.ID }, function(err, mem) {
     if (!mem) res.status(404).send("data is not found");
     else {
-      mem.FullName = req.body.FullName;
+      mem.Name = req.body.FullName;
       mem.OfficeID = req.body.OfficeID;
       mem.ID = req.body.ID;
       if (!req.body.Key === "") {
