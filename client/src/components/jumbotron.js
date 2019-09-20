@@ -42,9 +42,10 @@ export const Jumbotron = props => (
         <h1
           style={{
             color: "Black",
-            fontWeight: "900",
-            fontSize: "35px"
+            textShadow:
+              "-1px -1px 1px #aaa, 1px 5px 2px rgba(255,255,255), 5px 5px 6px rgba(255,255,250), 1px 1px 8px rgba(255,255,240)"
           }}
+          className="display-4"
         >
           Agile Leave Management System
         </h1>
