@@ -67,18 +67,20 @@ export default function AddMember(props) {
   const onClick = e => {
     if (!validator.isEmail(memInfo.Email)) {
       alert("Invalid Email");
+    } else if (!validator.isMobilePhone(memInfo.Phone)) {
+      alert("Invalid Phone");
+    } else if (!validator.isAlpha(memInfo.Name)) {
+      alert("Ivalid  Name");
+    } else {
+      axios
+        .post("/addmember", memInfo)
+        .then(res => {
+          props.history.push("/admindashboard/allemp");
+        })
+        .catch(error => {
+          alert("ID already exist.");
+        });
     }
-    elif(!validator.isMobilePhone(memInfo.Phone)){
-      alert("Invalid Phone")
-    }
-    axios
-      .post("/addmember", memInfo)
-      .then(res => {
-        props.history.push("/admindashboard/allemp");
-      })
-      .catch(error => {
-        alert("ID already exist.")
-      });
   };
 
   return (
