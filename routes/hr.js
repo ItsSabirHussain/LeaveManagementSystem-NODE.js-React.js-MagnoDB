@@ -78,10 +78,30 @@ router.post("/hrlogin", (req, res) => {
 });
 
 router.route("/aleave").post(function(req, res) {
+  const [s, e] = req.body.Date.split("to");
+  var d1 = new Date(s);
+  var d2 = new Date(e);
+  var type = "";
+  var Difference_In_Time = d2.getTime() - d1.getTime();
+  var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+  Member.findOne({ ID: req.body.ID }, function(err, leave) {
+    if (leave) {
+      leave.AvailLeave -= Difference_In_Days;
+      leave.LeftOver += Difference_In_Days;
+
+      if (leave.AvailLeave < 0) {
+        type = "UnPaid";
+      } else {
+        type = "Paid";
+      }
+    }
+    leave.save();
+  });
   Leave.findOne({ ID: req.body.ID, Date: req.body.Date }, function(err, leave) {
     if (!leave) res.status(404).send("data is not found");
     else {
       leave.Status = req.body.Status;
+      leave.Type = type;
       leave
         .save()
         .then(todo => {
@@ -95,11 +115,36 @@ router.route("/aleave").post(function(req, res) {
 });
 
 router.route("/rleave").post(function(req, res) {
+  const [s, e] = req.body.Date.split("to");
+  var d1 = new Date(s);
+  var d2 = new Date(e);
+  var type = "";
+  var Difference_In_Time = d2.getTime() - d1.getTime();
+  var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+  Member.findOne({ ID: req.body.ID }, function(err, leave) {
+    if (leave) {
+      leave.AvailLeave += Difference_In_Days;
+      leave.LeftOver -= Difference_In_Dayse;
+      if (leave.AvailLeave < 0) {
+        type = "UNPAID";
+      } else {
+        type = "PAID";
+      }
+      if (leave.AvailLeave < 0) {
+        newLeave.Type = "UnPaid";
+      } else {
+        newLeave.Type = "Paid";
+      }
+    }
+    leave.save();
+  });
+
   Leave.findOne({ ID: req.body.ID, Date: req.body.Date }, function(err, leave) {
     if (!leave) res.status(404).send("data is not found");
     else {
       leave.Status = req.body.Status;
       leave.RReason = req.body.RReason;
+      leave.Type = type;
       leave
         .save()
         .then(todo => {

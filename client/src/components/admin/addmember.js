@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
+import validator from "validator";
 
 function Copyright() {
   return (
@@ -64,13 +65,19 @@ export default function AddMember(props) {
   });
 
   const onClick = e => {
+    if (!validator.isEmail(memInfo.Email)) {
+      alert("Invalid Email");
+    }
+    elif(!validator.isMobilePhone(memInfo.Phone)){
+      alert("Invalid Phone")
+    }
     axios
       .post("/addmember", memInfo)
       .then(res => {
         props.history.push("/admindashboard/allemp");
       })
       .catch(error => {
-        console.log(error);
+        alert("ID already exist.")
       });
   };
 

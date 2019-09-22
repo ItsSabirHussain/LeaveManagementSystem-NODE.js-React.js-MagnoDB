@@ -97,22 +97,9 @@ router.post("/eapplyleave", (req, res) => {
     Reason: req.body.Reason,
     Department: req.body.Department,
     Name: req.body.FullName,
-    Type: "",
     Status: "Pendding"
   });
   console.log("There");
-  Member.findOne({ ID: req.body.ID }, function(err, leave) {
-    if (leave) {
-      leave.AvailLeave += -1;
-      leave.LeftOver += 1;
-      if (leave.AvailLeave < 0) {
-        newLeave.Type = "UnPaid";
-      } else {
-        newLeave.Type = "Paid";
-      }
-    }
-    leave.save();
-  });
   newLeave.save().then(user => {
     if (!user) {
       return res.status(404).json({ IDNotFound: "Error" });

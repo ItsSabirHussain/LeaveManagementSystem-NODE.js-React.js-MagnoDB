@@ -94,6 +94,7 @@ router.post("/addmember", (req, res) => {
 });
 
 router.route("/editmember").post(function(req, res) {
+  console.log(req.body);
   Member.findOne({ ID: req.body.ID }, function(err, mem) {
     if (!mem) res.status(404).send("data is not found");
     else {
@@ -107,19 +108,6 @@ router.route("/editmember").post(function(req, res) {
       mem.Department = req.body.Department;
       mem.Role = req.body.Role;
       mem.Phone = req.body.Phone;
-      if (!req.body.Key === "") {
-        bcrypt.genSalt(10, (err, salt) => {
-          bcrypt.hash(mem.Key, salt, (err, hash) => {
-            console.log(err);
-            if (err) throw err;
-            mem.Key = hash;
-            mem
-              .save()
-              .then(user => res.json({ message: "Member updated" }))
-              .catch(err => console.log(err));
-          });
-        });
-      }
       mem
         .save()
         .then(user => res.json({ message: "Member updated" }))
@@ -173,9 +161,7 @@ router.route("/getallemp").post(function(req, res) {
 router.route("/getmember").post(function(req, res) {
   Member.findOne({ ID: req.body.ID }, function(err, mem) {
     if (!mem) res.status(404).send("data is not found");
-    if (err) {
-      console.log(err);
-    } else {
+    else {
       res.json(mem);
     }
   });

@@ -156,7 +156,7 @@ export default function Notifications(props) {
                 Status: "Accepted"
               })
               .then(res => {
-                alert("Removed refress the page.");
+                alert("Action Perfromed refress the page.");
               })
               .catch(error => console.log(error));
           }}

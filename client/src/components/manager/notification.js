@@ -94,7 +94,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
     display: "flex",
     overflow: "auto",
-    flexDirection: "column"
+    flexDirection: "columns"
   },
   fixedHeight: {
     height: 240
@@ -102,8 +102,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Notifications(props) {
-  function allEmpList(props) {
-    return props.map(function(cdata, i) {
+  function allEmpList(p) {
+    return p.map(function(cdata, i) {
       return <Data data={cdata} key={i} />;
     });
   }

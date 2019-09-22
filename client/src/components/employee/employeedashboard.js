@@ -35,6 +35,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import axios from "axios";
 import Notifications from "./notification";
 import ApplyLeave from "./applyleave";
+import AllDepLeaves from "./alldepleaves";
 
 const drawerWidth = 240;
 
@@ -206,6 +207,12 @@ export default function EmployeeDashboard(props) {
               </ListItemIcon>
               <ListItemText primary="Notification" />
             </ListItem>
+            <ListItem button component={Link} to="/empdashboard/alldepleaves">
+              <ListItemIcon>
+                <PeopleIcon fontSize="large" />
+              </ListItemIcon>
+              <ListItemText primary="All Dept. Leaves" />
+            </ListItem>
           </div>
         </List>
         <Divider />
@@ -217,6 +224,11 @@ export default function EmployeeDashboard(props) {
           exact
           path="/empdashboard/notification"
           component={Notifications}
+        />
+        <Route
+          exact
+          path="/empdashboard/alldepleaves"
+          component={AllDepLeaves}
         />
       </Switch>
     </div>

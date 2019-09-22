@@ -82,9 +82,8 @@ export default function ApplyLeaveForm(props) {
     axios
       .post("/eapplyleave", leaveDate)
       .then(res => {
+        props.history.push("/userdashboard");
         alert("Done");
-
-        console.log(res);
       })
       .catch(error => {
         console.log(error);

@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import Link from "@material-ui/core/Link";
+import { Link } from "react-router-dom";
 import { CardActions } from "@material-ui/core";
 import ApplyLeaveForm from "./applyleaveform";
 import axios from "axios";
@@ -13,7 +13,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" to="/">
         Agile Leave Management System
       </Link>{" "}
       {new Date().getFullYear()}

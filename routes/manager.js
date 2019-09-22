@@ -106,19 +106,6 @@ router.post("/mapplyleave", (req, res) => {
     Status: "Pendding"
   });
 
-  Member.findOne({ ID: req.body.ID }, function(err, leave) {
-    if (leave) {
-      leave.AvailLeave += -1;
-      leave.LeftOver += 1;
-      if (leave.AvailLeave < 0) {
-        newLeave.Type = "UnPaid";
-      } else {
-        newLeave.Type = "Paid";
-      }
-    }
-    console.log(newLeave);
-    leave.save();
-  });
   newLeave.save().then(user => {
     if (!user) {
       res.status(404).json({ IDNotFound: "Error" });
