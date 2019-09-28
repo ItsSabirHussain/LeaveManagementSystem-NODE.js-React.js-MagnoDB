@@ -70,8 +70,8 @@ export default function ApplyLeaveForm(props) {
     }
   });
   const [leaveDate, setLeaveDate] = useState({
-    StartDate: "",
-    EndDate: "",
+    StartDate: new Date(),
+    EndDate: new Date(),
     Reason: "",
     Department: "",
     ID: localStorage.getItem("managerID"),
@@ -80,17 +80,29 @@ export default function ApplyLeaveForm(props) {
   console.log(leaveDate.FullName);
   const onClick = e => {
     e.preventDefault();
+    const ms = leaveDate.StartDate.getMonth() + 1;
+    const me = leaveDate.EndDate.getMonth() + 1;
     axios
       .post("/mapplyleave", {
-        StartDate: leaveDate.StartDate.toString().slice(4, 15),
-        EndDate: leaveDate.EndDate.toString().slice(4, 15),
+        StartDate:
+          leaveDate.StartDate.getFullYear() +
+          "/" +
+          ms +
+          "/" +
+          leaveDate.StartDate.getDate(),
+        EndDate:
+          leaveDate.EndDate.getFullYear() +
+          "/" +
+          me +
+          "/" +
+          leaveDate.EndDate.getDate(),
         Reason: leaveDate.Reason,
         Department: leaveDate.Department,
         ID: localStorage.getItem("managerID"),
         FullName: leaveDate.FullName
       })
       .then(res => {
-        alert("Your applications is submitted.");
+        alert("Your applications is submitted. " + leaveDate.StartDate);
         window.location.reload();
       })
       .catch(error => {
@@ -101,10 +113,10 @@ export default function ApplyLeaveForm(props) {
   };
 
   const sdchange = date => {
-    setLeaveDate({ ...leaveDate, StartDate: date });
+    setLeaveDate({ ...leaveDate, StartDate: new Date(date) });
   };
   const edchange = date => {
-    setLeaveDate({ ...leaveDate, EndDate: date });
+    setLeaveDate({ ...leaveDate, EndDate: new Date(date) });
   };
   return (
     <Container component="main" maxWidth="xs">

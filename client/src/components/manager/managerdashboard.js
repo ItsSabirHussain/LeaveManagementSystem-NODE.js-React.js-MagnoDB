@@ -172,7 +172,9 @@ export default function ManagerDashboard(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Avatar alt="addprofile" src={mainlogo} />
+          <Link to="/">
+            <Avatar alt="addprofile" src={mainlogo} />
+          </Link>
 
           <Typography
             component="h1"
@@ -181,7 +183,7 @@ export default function ManagerDashboard(props) {
             noWrap
             className={classes.title}
           >
-            {"Manager Dashboard" + managerInfo}
+            {"Manager Dashboard " + managerInfo}
           </Typography>
           <IconButton onClick={exit} color="inherit">
             <Badge color="secondary">

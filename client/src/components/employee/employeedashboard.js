@@ -170,7 +170,10 @@ export default function EmployeeDashboard(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Avatar alt="addprofile" src={mainlogo} />
+          <Link to="/">
+            {" "}
+            <Avatar alt="addprofile" src={mainlogo} />
+          </Link>
 
           <Typography
             component="h1"

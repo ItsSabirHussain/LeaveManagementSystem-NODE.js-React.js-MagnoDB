@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function HR(props) {
   const classes = useStyles();
-  const [HR, setHR] = useState({ ID: "", Key: "" });
+  const [HR, setHR] = useState({ ID: "", Key: "", Role: "HR" });
 
   const onClick = e => {
     e.preventDefault();
@@ -124,7 +124,7 @@ export default function HR(props) {
               fullWidth
               name="Key"
               label="Password"
-              type="Key"
+              type="password"
               id="Key"
               autoComplete="current-Key"
               onChange={e => setHR({ ...HR, Key: e.target.value })}

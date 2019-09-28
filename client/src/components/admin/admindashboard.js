@@ -192,7 +192,9 @@ export default function AdminDashbard(props) {
             >
               <MenuIcon />
             </IconButton>
-            <Avatar alt="Remy Sharp" src={mainlogo} />
+            <Link to="/">
+              <Avatar alt="Remy Sharp" src={mainlogo} />
+            </Link>
             {""}
             {"   "}
             <Typography

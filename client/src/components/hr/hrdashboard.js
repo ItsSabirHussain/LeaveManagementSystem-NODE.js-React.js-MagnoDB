@@ -174,7 +174,10 @@ export default function HRDashboard(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Avatar alt="addprofile" src={mainlogo} />
+          <Link tp="/">
+            {" "}
+            <Avatar alt="addprofile" src={mainlogo} />
+          </Link>
 
           <Typography
             component="h1"

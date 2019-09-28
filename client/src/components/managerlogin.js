@@ -55,7 +55,11 @@ const useStyles = makeStyles(theme => ({
 
 export default function Manager(props) {
   const classes = useStyles();
-  const [managerInfo, setManagerInfo] = useState({ ID: "", Key: "" });
+  const [managerInfo, setManagerInfo] = useState({
+    ID: "",
+    Key: "",
+    Role: "Manager"
+  });
 
   const onClick = e => {
     e.preventDefault();
@@ -125,7 +129,7 @@ export default function Manager(props) {
               fullWidth
               name="Key"
               label="Password"
-              type="Key"
+              type="password"
               id="Key"
               autoComplete="current-Key"
               onChange={e =>

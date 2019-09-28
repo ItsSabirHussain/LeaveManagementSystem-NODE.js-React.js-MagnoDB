@@ -58,7 +58,11 @@ const useStyles = makeStyles(theme => ({
 
 export default function Admin(props) {
   const classes = useStyles();
-  const [adminInfo, setAdminInfo] = useState({ ID: "", Key: "" });
+  const [adminInfo, setAdminInfo] = useState({
+    ID: "",
+    Key: "",
+    Role: "Admin"
+  });
   const onClick = e => {
     e.preventDefault();
     if (validator.isEmpty(adminInfo.ID)) {
@@ -126,7 +130,7 @@ export default function Admin(props) {
               fullWidth
               name="Key"
               label="Password"
-              type="Key"
+              type="password"
               id="Key"
               autoComplete="current-Key"
               onChange={e =>

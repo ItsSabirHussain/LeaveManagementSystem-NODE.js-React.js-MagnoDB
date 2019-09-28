@@ -67,12 +67,38 @@ export default function AddMember(props) {
   });
 
   const onClick = e => {
-    if (!validator.isEmail(memInfo.Email)) {
-      alert("Invalid Email");
-    } else if (!validator.isMobilePhone(memInfo.Phone)) {
-      alert("Invalid Phone");
+    if (validator.isEmpty(memInfo.Name)) {
+      alert("Name must required.");
     } else if (!validator.isAlpha(memInfo.Name)) {
-      alert("Ivalid  Name");
+      alert("Invalid Name");
+    } else if (validator.isEmpty(memInfo.ID)) {
+      alert("ID must required.");
+    } else if (!validator.isAlphanumeric(memInfo.ID)) {
+      alert("Invalid username.");
+    } else if (validator.isEmpty(memInfo.OfficeID)) {
+      alert("Office ID must required.");
+    } else if (!validator.isAlphanumeric(memInfo.OfficeID)) {
+      alert("Invalid office ID.");
+    } else if (validator.isEmpty(memInfo.Email)) {
+      alert("Email must required.");
+    } else if (!validator.isEmail(memInfo.OfficeID)) {
+      alert("Invalid Email.");
+    } else if (validator.isEmpty(memInfo.Phone)) {
+      alert("Phone number must required.");
+    } else if (!validator.isMobilePhone(memInfo.Phone)) {
+      alert("Invalid phone.");
+    } else if (validator.isEmpty(memInfo.Department)) {
+      alert("Department must required.");
+    } else if (!validator.isAlpha(memInfo.Department)) {
+      alert("Invalid department.");
+    } else if (validator.isEmpty(memInfo.Role)) {
+      alert("Invalid phone.");
+    } else if (!validator.isAlpha(memInfo.Role)) {
+      alert("Invalid role.");
+    } else if (validator.isEmpty(memInfo.Key)) {
+      alert("Key must required.");
+    } else if (!validator.isAlphanumeric(memInfo.Key)) {
+      alert("Invalid key.");
     } else {
       axios
         .post("/addmember", memInfo)
@@ -132,7 +158,7 @@ export default function AddMember(props) {
                 required
                 fullWidth
                 id="ID"
-                label="ID"
+                label="Username"
                 name="ID"
                 autoComplete="ID"
                 onChange={e => setMemInfo({ ...memInfo, ID: e.target.value })}
@@ -186,11 +212,14 @@ export default function AddMember(props) {
                 required
                 fullWidth
                 id="department"
-                label="Department"
+                label="Department (CS, )"
                 name="department"
                 autoComplete="department"
                 onChange={e =>
-                  setMemInfo({ ...memInfo, Department: e.target.value })
+                  setMemInfo({
+                    ...memInfo,
+                    Department: e.target.value.toUpperCase()
+                  })
                 }
               />
             </Grid>
@@ -212,7 +241,7 @@ export default function AddMember(props) {
                 required
                 fullWidth
                 name="Key"
-                label="Key"
+                label="Password"
                 type="password"
                 id="Key"
                 autoComplete="current-Key"

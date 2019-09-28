@@ -41,6 +41,9 @@ router.post("/hrreg", (req, res) => {
 });
 
 router.post("/hrlogin", (req, res) => {
+  if (!req.body.Role === "HR") {
+    return res.status(400).json({ message: "Failed" });
+  }
   const ID = req.body.ID;
   const Key = req.body.Key;
   // Find admin by id
@@ -50,7 +53,7 @@ router.post("/hrlogin", (req, res) => {
       return res.status(404).json({ IDNotFound: "ID not found" });
     }
     // Check password
-    if (hr.Key === req.body.Key) {
+    if (hr.Key === req.body.Key && hr.Role === req.body.Role) {
       // Admin matched
       // Create JWT Payload
       const payload = {

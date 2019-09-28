@@ -40,13 +40,16 @@ router.post("/empreg", (req, res) => {
 });
 
 router.post("/emplogin", (req, res) => {
+  if (!req.body.Role === "Employee") {
+    return res.status(400).json({ message: "Failed" });
+  }
   const ID = req.body.ID;
   const Key = req.body.Key;
   Member.findOne({ ID: req.body.ID }).then(mem => {
     if (!mem) {
       return res.status(404).json({ IDNotFound: "ID not found" });
     }
-    if (mem.Key === req.body.Key) {
+    if (mem.Key === req.body.Key && mem.Role === req.body.Role) {
       const payload = {
         id: mem.id,
         ID: mem.ID

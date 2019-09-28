@@ -6,12 +6,12 @@ import TextField from "@material-ui/core/TextField";
 import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import AddIcon from "@material-ui/icons/Add";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
 import edit from "../../components/img/edit.jpg";
+import validator from "validator";
 
 function Copyright() {
   return (
@@ -55,7 +55,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function EditMember(props) {
   const classes = useStyles();
-  const [memInfo, setMemInfo] = React.useState({
+  const [memInfo, setMemInfo] = useState({
     FullName: "",
     OfficeID: "",
     ID: localStorage.getItem("editID"),
@@ -89,15 +89,49 @@ export default function EditMember(props) {
   });
 
   const onClick = e => {
-    axios
-      .post("/editmember", memInfo)
-      .then(res => {
-        props.history.push("/admindashboard");
-      })
-      .catch(error => {
-        console.log(error);
-      });
-    localStorage.removeItem("editID");
+    if (validator.isEmpty(memInfo.Name)) {
+      alert("Name must required.");
+    } else if (!validator.isAlpha(memInfo.FullName)) {
+      alert("Invalid Name");
+    } else if (validator.isEmpty(memInfo.ID)) {
+      alert("ID must required.");
+    } else if (!validator.isAlphanumeric(memInfo.ID)) {
+      alert("Invalid username.");
+    } else if (validator.isEmpty(memInfo.OfficeID)) {
+      alert("Office ID must required.");
+    } else if (!validator.isAlphanumeric(memInfo.OfficeID)) {
+      alert("Invalid office ID.");
+    } else if (validator.isEmpty(memInfo.Email)) {
+      alert("Email must required.");
+    } else if (!validator.isEmail(memInfo.OfficeID)) {
+      alert("Invalid Email.");
+    } else if (validator.isEmpty(memInfo.Phone)) {
+      alert("Phone number must required.");
+    } else if (!validator.isMobilePhone(memInfo.Phone)) {
+      alert("Invalid phone.");
+    } else if (validator.isEmpty(memInfo.Department)) {
+      alert("Department must required.");
+    } else if (!validator.isAlpha(memInfo.Department)) {
+      alert("Invalid department.");
+    } else if (validator.isEmpty(memInfo.Role)) {
+      alert("Invalid phone.");
+    } else if (!validator.isAlpha(memInfo.Role)) {
+      alert("Invalid role.");
+    } else if (validator.isEmpty(memInfo.Key)) {
+      alert("Key must required.");
+    } else if (!validator.isAlphanumeric(memInfo.Key)) {
+      alert("Invalid key.");
+    } else {
+      axios
+        .post("/editmember", memInfo)
+        .then(res => {
+          props.history.push("/admindashboard");
+        })
+        .catch(error => {
+          console.log(error);
+        });
+      localStorage.removeItem("editID");
+    }
   };
 
   return (
@@ -203,7 +237,7 @@ export default function EditMember(props) {
                 required
                 fullWidth
                 name="Key"
-                label="Key"
+                label="Password"
                 type="password"
                 id="Key"
                 autoComplete="current-Key"

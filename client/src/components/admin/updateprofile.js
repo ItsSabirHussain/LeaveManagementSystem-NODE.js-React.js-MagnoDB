@@ -12,6 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
 import uppro from "../../components/img/updateprofile.png";
+import validator from "validator";
 
 function Copyright() {
   return (
@@ -57,14 +58,40 @@ export default function UpdateProfile(props) {
 
   const onClick = e => {
     localStorage.setItem("adminID", adminInfo.ID);
-    axios
-      .post("/updateprofile", adminInfo)
-      .then(res => {
-        props.history.push("/admindashboard/profile");
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    if (validator.isEmpty(adminInfo.FullName)) {
+      alert("Name must required.");
+    } else if (!validator.isAlpha(adminInfo.FullName)) {
+      alert("Invalid Name");
+    } else if (validator.isEmpty(adminInfo.ID)) {
+      alert("ID must required.");
+    } else if (!validator.isAlphanumeric(adminInfo.ID)) {
+      alert("Invalid username.");
+    } else if (validator.isEmpty(adminInfo.OfficeID)) {
+      alert("Office ID must required.");
+    } else if (!validator.isAlphanumeric(adminInfo.OfficeID)) {
+      alert("Invalid office ID.");
+    } else if (validator.isEmpty(adminInfo.Email)) {
+      alert("Email must required.");
+    } else if (!validator.isEmail(adminInfo.OfficeID)) {
+      alert("Invalid Email.");
+    } else if (validator.isEmpty(adminInfo.Phone)) {
+      alert("Phone number must required.");
+    } else if (!validator.isMobilePhone(adminInfo.Phone)) {
+      alert("Invalid phone.");
+    } else if (validator.isEmpty(adminInfo.Key)) {
+      alert("Key must required.");
+    } else if (!validator.isAlphanumeric(adminInfo.Key)) {
+      alert("Invalid key.");
+    } else {
+      axios
+        .post("/updateprofile", adminInfo)
+        .then(res => {
+          props.history.push("/admindashboard/profile");
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   };
 
   const [adminInfo, setAdminInfo] = React.useState({
@@ -149,7 +176,7 @@ export default function UpdateProfile(props) {
                 required
                 fullWidth
                 id="ID"
-                label={"ID: " + adminInfo.ID}
+                label={"Username: " + adminInfo.ID}
                 name="ID"
                 autoComplete="ID"
                 onChange={e =>
@@ -206,7 +233,7 @@ export default function UpdateProfile(props) {
                 required
                 fullWidth
                 name="Key"
-                label="Key"
+                label="Password"
                 type="password"
                 id="Key"
                 autoComplete="current-Key"

@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Employee(props) {
   const classes = useStyles();
-  const [empInfo, setEmpInfo] = useState({ ID: "", Key: "" });
+  const [empInfo, setEmpInfo] = useState({ ID: "", Key: "", Role: "Employee" });
   const onClick = e => {
     e.preventDefault();
     if (validator.isEmpty(empInfo.ID)) {
@@ -122,7 +122,7 @@ export default function Employee(props) {
               fullWidth
               name="Key"
               label="Password"
-              type="Key"
+              type="password"
               id="Key"
               autoComplete="current-Key"
               onChange={e => setEmpInfo({ ...empInfo, Key: e.target.value })}

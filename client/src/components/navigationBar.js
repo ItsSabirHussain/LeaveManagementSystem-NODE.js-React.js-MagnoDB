@@ -26,7 +26,9 @@ export const NavigationBar = () => (
     <Navbar expand="lg">
       <Navbar.Brand>
         {" "}
-        <Avatar alt="Remy Sharp" src={mainlogo} />
+        <Link to="/">
+          <Avatar alt="Remy Sharp" src={mainlogo} />
+        </Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
