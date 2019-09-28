@@ -147,7 +147,7 @@ export default function Profile(props) {
                     </Grid>
 
                     <Grid item xs={12} sm={6}>
-                      <h3 className="display-6">ID:</h3>
+                      <h3 className="display-6">Username:</h3>
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <h5 className="display-6">{adminInfo.ID}</h5>

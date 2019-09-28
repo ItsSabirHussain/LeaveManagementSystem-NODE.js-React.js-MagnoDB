@@ -187,7 +187,7 @@ export default function HRDashboard(props) {
             className={classes.title}
           >
             {""}
-            HR Dashboard with ID: {ceo}
+            HR Dashboard with Username: {" " + ceo}
           </Typography>
           <IconButton onClick={exit} color="inherit">
             <Badge color="secondary">

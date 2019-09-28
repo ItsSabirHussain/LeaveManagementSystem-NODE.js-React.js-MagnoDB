@@ -72,7 +72,7 @@ export default function UpdateProfile(props) {
       alert("Invalid office ID.");
     } else if (validator.isEmpty(adminInfo.Email)) {
       alert("Email must required.");
-    } else if (!validator.isEmail(adminInfo.OfficeID)) {
+    } else if (!validator.isEmail(adminInfo.Email)) {
       alert("Invalid Email.");
     } else if (validator.isEmpty(adminInfo.Phone)) {
       alert("Phone number must required.");

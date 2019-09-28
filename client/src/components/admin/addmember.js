@@ -81,7 +81,7 @@ export default function AddMember(props) {
       alert("Invalid office ID.");
     } else if (validator.isEmpty(memInfo.Email)) {
       alert("Email must required.");
-    } else if (!validator.isEmail(memInfo.OfficeID)) {
+    } else if (!validator.isEmail(memInfo.Email)) {
       alert("Invalid Email.");
     } else if (validator.isEmpty(memInfo.Phone)) {
       alert("Phone number must required.");

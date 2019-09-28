@@ -183,7 +183,7 @@ export default function ManagerDashboard(props) {
             noWrap
             className={classes.title}
           >
-            {"Manager Dashboard " + managerInfo}
+            {"Manager Dashboard with Username: " + managerInfo}
           </Typography>
           <IconButton onClick={exit} color="inherit">
             <Badge color="secondary">

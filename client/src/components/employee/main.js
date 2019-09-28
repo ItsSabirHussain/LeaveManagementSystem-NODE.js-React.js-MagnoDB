@@ -10,7 +10,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      Your Website and Your Name Here.
+      Agile Leave Management System
       {new Date().getFullYear()}
       {"."}
     </Typography>
@@ -132,7 +132,6 @@ export default function Main(props) {
       <div className={classes.appBarSpacer} />
       <Container maxWidth="lg" className={classes.container}>
         <Grid container spacing={3}>
-          {/* User Details */}
           <Grid item xs={12} md={8} lg={9}>
             <Jumbotron>
               <h1 className="display-6">{"Name: " + empInfo.FullName}</h1>

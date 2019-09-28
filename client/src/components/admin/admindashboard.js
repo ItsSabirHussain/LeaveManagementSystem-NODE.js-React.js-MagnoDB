@@ -205,7 +205,7 @@ export default function AdminDashbard(props) {
               className={classes.title}
             >
               {" "}
-              {"Admin Dashboard with ID "}
+              {"Admin Dashboard with Username "}
             </Typography>
             <IconButton onClick={exit} color="inherit">
               <Badge color="secondary">
