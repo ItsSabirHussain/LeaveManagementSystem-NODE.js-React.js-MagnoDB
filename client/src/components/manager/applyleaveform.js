@@ -85,17 +85,18 @@ export default function ApplyLeaveForm(props) {
     axios
       .post("/mapplyleave", {
         StartDate:
-          leaveDate.StartDate.getFullYear() +
+          leaveDate.StartDate.Date() +
           "/" +
           ms +
           "/" +
-          leaveDate.StartDate.getDate(),
+          leaveDate.StartDate.getFullYear(),
+
         EndDate:
-          leaveDate.EndDate.getFullYear() +
+          leaveDate.EndDate.Date() +
           "/" +
-          me +
+          ms +
           "/" +
-          leaveDate.EndDate.getDate(),
+          leaveDate.EndDate.getFullYear(),
         Reason: leaveDate.Reason,
         Department: leaveDate.Department,
         ID: localStorage.getItem("managerID"),

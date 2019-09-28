@@ -81,16 +81,20 @@ router.post("/hrlogin", (req, res) => {
 });
 
 router.route("/aleave").post(function(req, res) {
-  const [s, e] = req.body.Date.split("to");
-  var d1 = new Date(s);
-  var d2 = new Date(e);
+  console.log(req.body.Date);
+  const [s, e] = req.body.Date.toString().split("to");
+
+  const date1 = new Date(s);
+  const date2 = new Date(e);
+  const diffTime = Math.abs(date2 - date1);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
   var type = "";
-  var Difference_In_Time = d2.getTime() - d1.getTime();
-  var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
   Member.findOne({ ID: req.body.ID }, function(err, leave) {
     if (leave) {
-      leave.AvailLeave -= Difference_In_Days;
-      leave.LeftOver += Difference_In_Days;
+      leave.AvailLeave -= diffDays;
+      leave.LeftOver += diffDays;
 
       if (leave.AvailLeave < 0) {
         type = "UnPaid";

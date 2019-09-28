@@ -107,7 +107,7 @@ router.post("/mapplyleave", (req, res) => {
     Department: req.body.Department,
     Name: req.body.FullName,
     Type: "",
-    Status: "Pendding"
+    Status: "Pending"
   });
 
   newLeave
@@ -122,15 +122,27 @@ router.post("/mapplyleave", (req, res) => {
 
 router.post("/getdepleaves", (req, res) => {
   var dep = "";
-  Member.find({ Department: req.body.Department }, function(err, mem) {
-    dep = mem.depopulate;
-  });
-  Leave.find({ Department: dep }, function(err, mem) {
-    if (!mem) {
-      return res.json({ message: "Manager not found" });
-    } else {
-      return res.json(mem);
-    }
+  Member.findOne({ ID: req.body.ID }, function(err, mem) {
+    Leave.find({ Department: mem.Department }, function(err, leave) {
+      if (!leave) {
+        return res.json({ message: "Manager not found" });
+      } else {
+        console.log(leave);
+        if (leave.length < 1) {
+          return res.json([
+            {
+              Name: "None",
+              ID: "None",
+              Date: "None",
+              Reason: "None",
+              Status: "None",
+              Type: "None"
+            }
+          ]);
+        }
+        return res.json(leave);
+      }
+    });
   });
 });
 

@@ -123,14 +123,14 @@ export default function AllDepLeaves(props) {
   useEffect(() => {
     if (alldepleave.length < 1) {
       axios
-        .post("/getdepleave", {
-          Department: localStorage.getItem("managerDep")
+        .post("/getdepleaves", {
+          ID: localStorage.getItem("managerID")
         })
         .then(res => {
           console.log(res);
           setAlldepleaves(res.data);
         })
-        .catch(error => console.log(error));
+        .catch(error => alert(error));
     }
   });
   return (

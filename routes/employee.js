@@ -101,7 +101,7 @@ router.post("/eapplyleave", (req, res) => {
     Reason: req.body.Reason,
     Department: req.body.Department,
     Name: req.body.FullName,
-    Status: "Pendding"
+    Status: "Pending"
   });
   console.log("There");
   newLeave.save().then(user => {
