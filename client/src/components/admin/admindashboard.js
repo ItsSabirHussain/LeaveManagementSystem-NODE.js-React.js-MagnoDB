@@ -126,7 +126,7 @@ export default function AdminDashbard(props) {
   const [empInfo, setEmpInfo] = React.useState({
     FullName: "",
     OfficeID: "",
-    ID: "",
+    ID: localStorage.getItem("adminID"),
     Key: "",
     Email: "",
     Phone: ""
@@ -143,6 +143,7 @@ export default function AdminDashbard(props) {
         .then(res => {
           console.log(res);
           setEmpInfo({
+            ID: localStorage.getItem("adminID"),
             OfficeID: res.data.OfficeID,
             FullName: res.data.FullName,
             Department: res.data.Department,
@@ -205,7 +206,8 @@ export default function AdminDashbard(props) {
               className={classes.title}
             >
               {" "}
-              {"Admin Dashboard with Username "}
+              {"Admin Dashboard with Username: " +
+                localStorage.getItem("adminID")}
             </Typography>
             <IconButton onClick={exit} color="inherit">
               <Badge color="secondary">

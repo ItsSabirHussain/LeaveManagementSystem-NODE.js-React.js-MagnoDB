@@ -92,7 +92,7 @@ export default function AddMember(props) {
     } else if (!validator.isAlpha(memInfo.Department)) {
       alert("Invalid department.");
     } else if (validator.isEmpty(memInfo.Role)) {
-      alert("Invalid phone.");
+      alert("Invalid role.");
     } else if (!validator.isAlpha(memInfo.Role)) {
       alert("Invalid role.");
     } else if (validator.isEmpty(memInfo.Key)) {

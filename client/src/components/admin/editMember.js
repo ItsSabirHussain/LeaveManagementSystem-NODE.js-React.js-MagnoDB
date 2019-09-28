@@ -91,7 +91,7 @@ export default function EditMember(props) {
   const onClick = e => {
     if (validator.isEmpty(memInfo.Name)) {
       alert("Name must required.");
-    } else if (!validator.isAlpha(memInfo.FullName)) {
+    } else if (!validator.isAlpha(memInfo.Name)) {
       alert("Invalid Name");
     } else if (validator.isEmpty(memInfo.ID)) {
       alert("ID must required.");
@@ -114,7 +114,7 @@ export default function EditMember(props) {
     } else if (!validator.isAlpha(memInfo.Department)) {
       alert("Invalid department.");
     } else if (validator.isEmpty(memInfo.Role)) {
-      alert("Invalid phone.");
+      alert("Invalid role.");
     } else if (!validator.isAlpha(memInfo.Role)) {
       alert("Invalid role.");
     } else if (validator.isEmpty(memInfo.Key)) {
