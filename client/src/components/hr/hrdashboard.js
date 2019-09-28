@@ -33,6 +33,13 @@ import AllEmployee from "./allemp";
 import LeaveReq from "./leavereq";
 import { BottomNavigationAction } from "@material-ui/core";
 import Action from "./action";
+import logout from "./logout.jpg";
+import leave from "./leave.png";
+import mainlogo from "./mainlogo.jpg";
+
+import db from "./dashboard.jpg";
+
+import Avatar from "@material-ui/core/Avatar";
 
 const drawerWidth = 240;
 
@@ -47,6 +54,8 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-end",
+    backgroundColor: "#3f50b5",
+
     padding: "0 8px",
     ...theme.mixins.toolbar
   },
@@ -165,6 +174,8 @@ export default function HRDashboard(props) {
           >
             <MenuIcon />
           </IconButton>
+          <Avatar alt="addprofile" src={mainlogo} />
+
           <Typography
             component="h1"
             variant="h6"
@@ -172,11 +183,18 @@ export default function HRDashboard(props) {
             noWrap
             className={classes.title}
           >
-            {"HR Dashboard "}
+            {""}
+            HR Dashboard with ID: {ceo}
           </Typography>
           <IconButton onClick={exit} color="inherit">
             <Badge color="secondary">
-              <ExitToAppIcon fontSize="large" />
+              <Avatar
+                alt="addprofile"
+                src={logout}
+                className={classes.avatar}
+                style={{ margin: 0, width: 120, Heigth: 80 }}
+                alt="addprofile"
+              />
             </Badge>
           </IconButton>
         </Toolbar>
@@ -198,13 +216,13 @@ export default function HRDashboard(props) {
           <div>
             <ListItem button component={Link} to="/hrdashboard">
               <ListItemIcon>
-                <DashboardIcon fontSize="large" />
+                <Avatar alt="addprofile" src={db} />
               </ListItemIcon>
               <ListItemText>Dashboard</ListItemText>
             </ListItem>
             <ListItem button component={Link} to="/hrdashboard/leavereq">
               <ListItemIcon>
-                <NotificationImportantIcon fontSize="large" />
+                <Avatar alt="addprofile" src={leave} />
               </ListItemIcon>
 
               <ListItemText primary="Leave Requests" />

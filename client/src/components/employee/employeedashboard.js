@@ -35,7 +35,18 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import axios from "axios";
 import Notifications from "./notification";
 import ApplyLeave from "./applyleave";
+
 import AllDepLeaves from "./alldepleaves";
+
+import logout from "./logout.jpg";
+import mainlogo from "./mainlogo.jpg";
+
+import leave from "./leave.png";
+import noti from "./noti.jpg";
+
+import db from "./dashboard.jpg";
+
+import Avatar from "@material-ui/core/Avatar";
 
 const drawerWidth = 240;
 
@@ -50,6 +61,8 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-end",
+    backgroundColor: "#3f50b5",
+
     padding: "0 8px",
     ...theme.mixins.toolbar
   },
@@ -157,6 +170,8 @@ export default function EmployeeDashboard(props) {
           >
             <MenuIcon />
           </IconButton>
+          <Avatar alt="addprofile" src={mainlogo} />
+
           <Typography
             component="h1"
             variant="h6"
@@ -164,11 +179,16 @@ export default function EmployeeDashboard(props) {
             noWrap
             className={classes.title}
           >
-            {"Dashboard"}
+            {"Employee dashboard"}
           </Typography>
           <IconButton onClick={exit} color="inherit">
             <Badge color="secondary">
-              <ExitToAppIcon fontSize="large" />
+              <Avatar
+                alt="addprofile"
+                src={logout}
+                className={classes.avatar}
+                style={{ margin: 0, width: 120, Heigth: 80 }}
+              />
             </Badge>
           </IconButton>
         </Toolbar>
@@ -190,26 +210,26 @@ export default function EmployeeDashboard(props) {
           <div>
             <ListItem button component={Link} to="/empdashboard">
               <ListItemIcon>
-                <DashboardIcon fontSize="large" />
+                <Avatar alt="addprofile" src={db} />
               </ListItemIcon>
               <ListItemText>Dashboard</ListItemText>
             </ListItem>
             <ListItem button component={Link} to="/empdashboard/appleave">
               <ListItemIcon>
-                <NotificationImportantIcon fontSize="large" />
+                <Avatar alt="addprofile" src={leave} />
               </ListItemIcon>
 
               <ListItemText primary="Apply Leave" />
             </ListItem>
             <ListItem button component={Link} to="/empdashboard/notification">
               <ListItemIcon>
-                <PeopleIcon fontSize="large" />
+                <Avatar alt="addprofile" src={noti} />
               </ListItemIcon>
               <ListItemText primary="Notification" />
             </ListItem>
             <ListItem button component={Link} to="/empdashboard/alldepleaves">
               <ListItemIcon>
-                <PeopleIcon fontSize="large" />
+                <Avatar alt="addprofile" src={leave} />
               </ListItemIcon>
               <ListItemText primary="All Dept. Leaves" />
             </ListItem>

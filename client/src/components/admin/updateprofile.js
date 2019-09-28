@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
+import uppro from "../../components/img/updateprofile.png";
 
 function Copyright() {
   return (
@@ -38,8 +39,9 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center"
   },
   avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.primary.main
+    width: 120,
+    height: 120,
+    margin: theme.spacing(1)
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -102,10 +104,26 @@ export default function UpdateProfile(props) {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
+        <br></br>
+        <br></br>
         <Avatar className={classes.avatar}>
-          <AddIcon />
+          <Avatar
+            style={{ width: 120, height: 120 }}
+            alt="Remy Sharp"
+            src={uppro}
+          />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography
+          component="h1"
+          variant="h5"
+          style={{
+            color: "Black",
+            fontSize: 35,
+            fontFamily: "Arial",
+            textShadow:
+              "-1px -1px 1px #aaa, 1px 5px 2px rgba(255,255,255), 5px 5px 6px rgba(255,255,250), 1px 1px 8px rgba(255,255,240)"
+          }}
+        >
           Update Profile
         </Typography>
         <form className={classes.form} noValidate>

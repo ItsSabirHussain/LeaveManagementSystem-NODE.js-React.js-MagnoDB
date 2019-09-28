@@ -11,13 +11,14 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
+import edit from "../../components/img/edit.jpg";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
       <Link to="/" style={{ textDecoration: "none" }}>
-        The website{" "}
+        Agile Leave Management System{" "}
       </Link>
       {new Date().getFullYear()}
       {"."}
@@ -39,6 +40,8 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     margin: theme.spacing(1),
+    width: 120,
+    height: 120,
     backgroundColor: theme.palette.primary.main
   },
   form: {
@@ -101,8 +104,9 @@ export default function EditMember(props) {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
+        <br></br>
         <Avatar className={classes.avatar}>
-          <AddIcon />
+          <Avatar className={classes.avatar} alt="Remy Sharp" src={edit} />
         </Avatar>
         <Typography component="h1" variant="h5">
           Edit Member Details

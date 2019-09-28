@@ -138,10 +138,31 @@ export default function AllEmployee(props) {
           <Grid item xs={12} md={8} lg={9}>
             <Container component="main" className={classes.main} maxWidth="sm">
               <div>
-                <h3>All Employee</h3>
+                <h3
+                  style={{
+                    color: "Black",
+                    margin: 3,
+                    fontSize: 35,
+                    fontFamily: "Arial",
+                    textShadow:
+                      "-1px -1px 1px #aaa, 1px 5px 2px rgba(255,255,255), 5px 5px 6px rgba(255,255,250), 1px 1px 8px rgba(255,255,240)"
+                  }}
+                >
+                  List of all employee
+                </h3>
+                <br></br>
                 <table
                   className="table table-striped"
-                  style={{ marginTop: 20 }}
+                  style={{
+                    marginTop: 20,
+                    border: "1px solid black",
+                    color: "Black",
+                    margin: 3,
+                    fontSize: 15,
+                    fontFamily: "Arial",
+                    tableLayout: "relative",
+                    width: "100%"
+                  }}
                 >
                   <thead>
                     <tr>

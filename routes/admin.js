@@ -21,17 +21,10 @@ router.post("/adminreg", (req, res) => {
         Email: req.body.Email,
         Phone: req.body.Phone
       });
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newAdmin.Key, salt, (err, hash) => {
-          console.log(err);
-          if (err) throw err;
-          newAdmin.Key = hash;
-          newAdmin
-            .save()
-            .then(user => res.json(user))
-            .catch(err => console.log(err));
-        });
-      });
+      newAdmin
+        .save()
+        .then(user => res.json(user))
+        .catch(err => console.log(err));
     }
   });
 });

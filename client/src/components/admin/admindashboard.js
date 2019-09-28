@@ -16,9 +16,7 @@ import { Link } from "react-router-dom";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import PeopleIcon from "@material-ui/icons/People";
-import PermIdentityIcon from "@material-ui/icons/PermIdentity";
+
 import axios from "axios";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import PublishIcon from "@material-ui/icons/Publish";
@@ -28,6 +26,16 @@ import UpdateProfile from "./updateprofile";
 import AllEmployee from "./allemp";
 import Profile from "./profile";
 import AddMember from "./addmember";
+import { NavigationBar } from "../../components/navigationBar";
+import { Jumbotron } from "../jumbotron";
+import mainlogo from "../../components/img/mainlogo.jpg";
+import db from "../../components/img/dashboard.jpg";
+import profile from "../../components/img/profile.png";
+import updateprofile from "../../components/img/updateprofile.png";
+import addprofile from "../../components/img/addprofile.png";
+import logout from "../../components/img/logout.jpg";
+
+import Avatar from "@material-ui/core/Avatar";
 
 const drawerWidth = 240;
 
@@ -43,6 +51,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     justifyContent: "flex-end",
     padding: "0 8px",
+    backgroundColor: "#3f50b5",
     ...theme.mixins.toolbar
   },
   appBar: {
@@ -106,7 +115,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column"
   },
   fixedHeight: {
-    height: 240
+    height: 1000
   }
 }));
 
@@ -167,107 +176,114 @@ export default function AdminDashbard(props) {
   };
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position="absolute"
-        className={clsx(classes.appBar, open && classes.appBarShift)}
-      >
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(
-              classes.menuButton,
-              open && classes.menuButtonHidden
-            )}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            className={classes.title}
-          >
-            {"Admin Dashboard with ID "}
-          </Typography>
-          <IconButton onClick={exit} color="inherit">
-            <Badge color="secondary">
-              <ExitToAppIcon />
-            </Badge>
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose)
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          <div>
-            <ListItem button component={Link} to="/admindashboard/allemp">
-              <ListItemIcon>
-                <DashboardIcon fontSize="large" />
-              </ListItemIcon>
-              <ListItemText>Dashboard</ListItemText>
-            </ListItem>
-            <ListItem button component={Link} to="/admindashboard/profile">
-              <ListItemIcon>
-                <PublishIcon fontSize="large" />
-              </ListItemIcon>
-
-              <ListItemText primary="Profile" />
-            </ListItem>
-            <ListItem
-              button
-              component={Link}
-              to="/admindashboard/updateprofile"
+    <div>
+      <div className={classes.root}>
+        <AppBar className={clsx(classes.appBar, open && classes.appBarShift)}>
+          <Toolbar className={classes.toolbar}>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              className={clsx(
+                classes.menuButton,
+                open && classes.menuButtonHidden
+              )}
             >
-              <ListItemIcon>
-                <PeopleIcon fontSize="large" />
-              </ListItemIcon>
-              <ListItemText primary="UpdateProfile" />
-            </ListItem>
-            <ListItem button component={Link} to="/admindashboard/addmember">
-              <ListItemIcon>
-                <PermIdentityIcon fontSize="large" />
-              </ListItemIcon>
-              <ListItemText primary="Add Member" />
-            </ListItem>
+              <MenuIcon />
+            </IconButton>
+            <Avatar alt="Remy Sharp" src={mainlogo} />
+            {""}
+            {"   "}
+            <Typography
+              component="h1"
+              variant="h6"
+              color="inherit"
+              noWrap
+              className={classes.title}
+            >
+              {" "}
+              {"Admin Dashboard with ID "}
+            </Typography>
+            <IconButton onClick={exit} color="inherit">
+              <Badge color="secondary">
+                <Avatar
+                  className={classes.avatar}
+                  style={{ margin: 0, width: 120, Heigth: 80 }}
+                  alt="addprofile"
+                  src={logout}
+                />
+              </Badge>
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          variant="permanent"
+          classes={{
+            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose)
+          }}
+          open={open}
+        >
+          <div className={classes.toolbarIcon}>
+            <IconButton onClick={handleDrawerClose}>
+              <ChevronLeftIcon />
+            </IconButton>
           </div>
-        </List>
-        <Divider />
-      </Drawer>
+          <Divider />
+          <List style={{ backgroundColor: "#9eba0", height: "200%" }}>
+            <div>
+              <ListItem button component={Link} to="/admindashboard/allemp">
+                <ListItemIcon>
+                  <Avatar alt="db" src={db} />
+                </ListItemIcon>
+                <ListItemText>Dashboard</ListItemText>
+              </ListItem>
+              <ListItem button component={Link} to="/admindashboard/profile">
+                <ListItemIcon>
+                  <Avatar alt="profile" src={profile} />
+                </ListItemIcon>
 
-      <Switch>
-        <Route exact path="/admindashboard" component={AllEmployee} />
-        <Route
-          exact
-          path="/admindashboard/updateprofile"
-          component={UpdateProfile}
-        />
+                <ListItemText primary="Profile" />
+              </ListItem>
+              <ListItem
+                button
+                component={Link}
+                to="/admindashboard/updateprofile"
+              >
+                <ListItemIcon>
+                  <Avatar alt="profile" src={updateprofile} />
+                </ListItemIcon>
+                <ListItemText primary="UpdateProfile" />
+              </ListItem>
+              <ListItem button component={Link} to="/admindashboard/addmember">
+                <ListItemIcon>
+                  <Avatar alt="addprofile" src={addprofile} />
+                </ListItemIcon>
+                <ListItemText primary="Add Member" />
+              </ListItem>
+            </div>
+          </List>
+          <Divider />
+        </Drawer>
 
-        <Route exact path="/admindashboard/allemp" component={AllEmployee} />
-        <Route exact path="/admindashboard/profile" component={Profile} />
-        <Route exact path="/admindashboard/addmember" component={AddMember} />
-        <Route
-          exact
-          path="/admindashboard/allemp/edit"
-          component={EditMember}
-        />
-      </Switch>
+        <Switch>
+          <Route exact path="/admindashboard" component={AllEmployee} />
+          <Route
+            exact
+            path="/admindashboard/updateprofile"
+            component={UpdateProfile}
+          />
+
+          <Route exact path="/admindashboard/allemp" component={AllEmployee} />
+          <Route exact path="/admindashboard/profile" component={Profile} />
+          <Route exact path="/admindashboard/addmember" component={AddMember} />
+          <Route
+            exact
+            path="/admindashboard/allemp/edit"
+            component={EditMember}
+          />
+        </Switch>
+      </div>
     </div>
   );
 }

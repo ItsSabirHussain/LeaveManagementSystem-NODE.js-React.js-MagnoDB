@@ -124,16 +124,16 @@ router.route("/rleave").post(function(req, res) {
   Member.findOne({ ID: req.body.ID }, function(err, leave) {
     if (leave) {
       leave.AvailLeave += Difference_In_Days;
-      leave.LeftOver -= Difference_In_Dayse;
+      leave.LeftOver -= Difference_In_Days;
       if (leave.AvailLeave < 0) {
         type = "UNPAID";
       } else {
         type = "PAID";
       }
       if (leave.AvailLeave < 0) {
-        newLeave.Type = "UnPaid";
+        leave.Type = "UnPaid";
       } else {
-        newLeave.Type = "Paid";
+        leave.Type = "Paid";
       }
     }
     leave.save();

@@ -114,7 +114,7 @@ export default function Notifications(props) {
       <td>{p.data.Department}</td>
       <td>{p.data.Date}</td>
       <td>{p.data.Status}</td>
-      <td>{p.data.Reacson}</td>
+      <td>{p.data.Reason}</td>
       <td>
         {" "}
         <Button
@@ -157,6 +157,7 @@ export default function Notifications(props) {
               })
               .then(res => {
                 alert("Action Perfromed refress the page.");
+                window.location.reload();
               })
               .catch(error => console.log(error));
           }}
@@ -186,14 +187,35 @@ export default function Notifications(props) {
       <div className={classes.appBarSpacer} />
       <Container maxWidth="lg" className={classes.container}>
         <Grid container spacing={3}>
-          <Grid item xs={12}>
+          <Grid item xs={12} md={8} lg={9}>
             <Container component="main" className={classes.main} maxWidth="sm">
               <div>
-                <h3>Agile Leave Management System</h3>
+                <h3
+                  style={{
+                    color: "Black",
+                    margin: 3,
+                    fontSize: 35,
+                    fontFamily: "Arial",
+                    textShadow:
+                      "-1px -1px 1px #aaa, 1px 5px 2px rgba(255,255,255), 5px 5px 6px rgba(255,255,250), 1px 1px 8px rgba(255,255,240)"
+                  }}
+                >
+                  Agile Leave Management System
+                </h3>
+                <br></br>
                 <div class="col-md-3">
                   <table
                     className="table table-striped"
-                    style={{ marginTop: 20 }}
+                    style={{
+                      marginTop: 20,
+                      border: "1px solid black",
+                      color: "Black",
+                      margin: 3,
+                      fontSize: 15,
+                      fontFamily: "Arial",
+                      tableLayout: "relative",
+                      width: "100%"
+                    }}
                   >
                     <thead>
                       <tr>
@@ -209,7 +231,7 @@ export default function Notifications(props) {
                     <tbody>{allEmpList(leaveData)}</tbody>
                   </table>
                 </div>
-              </div>
+              </div>{" "}
             </Container>
           </Grid>
         </Grid>

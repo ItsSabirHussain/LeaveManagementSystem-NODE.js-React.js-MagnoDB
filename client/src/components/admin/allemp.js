@@ -5,6 +5,8 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import allmem from "../../components/img/allmem.png";
+import Avatar from "@material-ui/core/Avatar";
 
 import axios from "axios";
 
@@ -90,9 +92,10 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4)
   },
+
   paper: {
     padding: theme.spacing(2),
-    display: "flex",
+    display: "fixed",
     overflow: "auto",
     flexDirection: "column"
   },
@@ -156,10 +159,32 @@ export default function AllEmployee(props) {
           <Grid item xs={12} md={8} lg={9}>
             <Container component="main" className={classes.main} maxWidth="sm">
               <div>
-                <h3>Agile Leave Management System</h3>
+                {" "}
+                <h3
+                  style={{
+                    color: "Black",
+                    margin: 3,
+                    fontSize: 35,
+                    fontFamily: "Arial",
+                    textShadow:
+                      "-1px -1px 1px #aaa, 1px 5px 2px rgba(255,255,255), 5px 5px 6px rgba(255,255,250), 1px 1px 8px rgba(255,255,240)"
+                  }}
+                >
+                  {" "}
+                  Agile Leave Management System
+                </h3>
                 <table
                   className="table table-striped"
-                  style={{ marginTop: 20 }}
+                  style={{
+                    marginTop: 20,
+                    border: "1px solid black",
+                    color: "Black",
+                    margin: 3,
+                    fontSize: 15,
+                    fontFamily: "Arial",
+                    tableLayout: "relative",
+                    width: "100%"
+                  }}
                 >
                   <thead>
                     <tr>

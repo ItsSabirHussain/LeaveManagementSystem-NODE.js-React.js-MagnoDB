@@ -5,12 +5,13 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import { Jumbotron } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      Your Website and Your Name Here.
+      <Link to="/">Agile Leave Management Sysatem</Link>{" "}
       {new Date().getFullYear()}
       {"."}
     </Typography>

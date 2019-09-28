@@ -3,7 +3,6 @@ import { Jumbotron as Jumbo, Container } from "react-bootstrap";
 import styled from "styled-components";
 import boatImage from "./img/jumbotrone.jpg";
 import "./styles/jumbotrone.css";
-import { makeStyles } from "@material-ui/core/styles";
 
 const Styles = styled.div`
   .jumbo {
@@ -26,14 +25,7 @@ const Styles = styled.div`
     z-index: ;
   }
 `;
-const useStyles = makeStyles(theme => ({
-  button: {
-    margin: theme.spacing(1)
-  },
-  input: {
-    display: "none"
-  }
-}));
+
 export const Jumbotron = props => (
   <Styles>
     <Jumbo fluid className="jumbo">
@@ -42,8 +34,12 @@ export const Jumbotron = props => (
         <h1
           style={{
             color: "Black",
+            fontSize: 50,
+            fontWeight: "bold",
+            fontFamily: "Times New Roman",
+            fontStyle: "italic",
             textShadow:
-              "-1px -1px 1px #aaa, 1px 5px 2px rgba(255,255,255), 5px 5px 6px rgba(255,255,250), 1px 1px 8px rgba(255,255,240)"
+              "2px 2px 4px #aaa, 6px 5px 2px rgba(255,255,255), 5px 5px 6px rgba(255,255,250), 3px 3px 8px rgba(255,255,240)"
           }}
           className="display-4"
         >

@@ -11,13 +11,15 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
+import appleave from "./appleave.png";
+import DatePicker from "react-date-picker";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
       <Link to="/promandashboard" style={{ textDecoration: "none" }}>
-        Dashboard{" "}
+        Agile Leave Management Sytem{" "}
       </Link>
       {new Date().getFullYear()}
       {"."}
@@ -80,52 +82,62 @@ export default function ApplyLeaveForm(props) {
   const onClick = e => {
     e.preventDefault();
     axios
-      .post("/eapplyleave", leaveDate)
+      .post("/eapplyleave", {
+        StartDate: leaveDate.StartDate.toString().slice(4, 15),
+        EndDate: leaveDate.EndDate.toString().slice(4, 15),
+        Reason: leaveDate.Reason,
+        Department: leaveDate.Department,
+        ID: localStorage.getItem("empID"),
+        FullName: leaveDate.FullName
+      })
       .then(res => {
-        props.history.push("/userdashboard");
-        alert("Done");
+        alert("You application is submitted");
+        window.location.reload();
       })
       .catch(error => {
         console.log(error);
+        alert(error);
       });
   };
 
+  const sdchange = date => {
+    setLeaveDate({ ...leaveDate, StartDate: date });
+  };
+  const edchange = date => {
+    setLeaveDate({ ...leaveDate, EndDate: date });
+  };
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Typography component="h1" variant="h5">
+        <Avatar
+          alt="addprofile"
+          src={appleave}
+          style={{ width: 120, height: 120 }}
+        />
+        <Typography
+          component="h1"
+          variant="h5"
+          style={{
+            color: "Black",
+            margin: 3,
+            fontSize: 35,
+            fontFamily: "Arial",
+            textShadow:
+              "-1px -1px 1px #aaa, 1px 5px 2px rgba(255,255,255), 5px 5px 6px rgba(255,255,250), 1px 1px 8px rgba(255,255,240)"
+          }}
+        >
           Apply for leave
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
-              <TextField
-                name="sdata"
-                variant="outlined"
-                required
-                fullWidth
-                id="sdate"
-                label="Leave Start Date"
-                autoFocus
-                onChange={e =>
-                  setLeaveDate({ ...leaveDate, StartDate: e.target.value })
-                }
-              />
+              Start Date
+              <DatePicker onChange={sdchange} value={leaveDate.StartDate} />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="edate"
-                label="Leave End Date"
-                name="ID"
-                autoComplete="edate"
-                onChange={e =>
-                  setLeaveDate({ ...leaveDate, EndDate: e.target.value })
-                }
-              />
+              End Date
+              <DatePicker onChange={edchange} value={leaveDate.EndDate} />
             </Grid>
             <Grid item xs={12}>
               <TextField

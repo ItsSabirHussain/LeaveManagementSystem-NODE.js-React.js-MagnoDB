@@ -43,21 +43,7 @@ const Home = () => {
                 alignItems: "center",
                 justifyContent: "center"
               }}
-            >
-              <div className={bStyles.center}>
-                <Link to="/emplogin">
-                  <Fab
-                    variant="extended"
-                    color="primary"
-                    aria-label="add"
-                    className={bStyles.margin}
-                  >
-                    <NavigationIcon className={bStyles.extendedIcon} />
-                    Get Started
-                  </Fab>
-                </Link>
-              </div>
-            </div>
+            ></div>
           </h1>
         </div>
       </div>

@@ -106,23 +106,21 @@ router.post("/mapplyleave", (req, res) => {
     Status: "Pendding"
   });
 
-  newLeave.save().then(user => {
-    if (!user) {
-      res.status(404).json({ IDNotFound: "Error" });
-    } else {
-      res.status(404).json({ message: "Done" });
-    }
-  });
-  console.log("Done");
+  newLeave
+    .save()
+    .then(user => {
+      res.json({ message: "Done" });
+    })
+    .catch(err => {
+      console.log(err);
+    });
 });
 
 router.post("/getdepleaves", (req, res) => {
-  console.log("here");
   var dep = "";
   Member.findOne({ ID: req.body.ID }, function(err, mem) {
     dep = mem.depopulate;
   });
-  console.log(dep);
   Leave.find({ Department: dep }, function(err, mem) {
     if (!mem) {
       return res.json({ message: "Manager not found" });
@@ -134,8 +132,8 @@ router.post("/getdepleaves", (req, res) => {
 
 router.post("/mgetleave", (req, res) => {
   Leave.find({ ID: req.body.ID }, function(err, leave) {
-    if (!leave) {
-      return res.json({ message: "Member not found" });
+    if (leave.length < 1) {
+      return res.json([{ Date: "None", Status: "None", RReason: "None" }]);
     } else {
       return res.json(leave);
     }

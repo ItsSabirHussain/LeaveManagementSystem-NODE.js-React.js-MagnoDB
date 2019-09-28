@@ -127,10 +127,10 @@ router.post("/getemp", (req, res) => {
 });
 router.post("/egetleave", (req, res) => {
   Leave.find({ ID: req.body.ID }, function(err, leave) {
-    if (!leave) {
-      return res.json({ message: "Member not found" });
-    } else {
+    if (leave.length < 1) {
       console.log("There");
+      return res.json([{ Date: "None", Status: "None", RReason: "None" }]);
+    } else {
       return res.json(leave);
     }
   });

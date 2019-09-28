@@ -12,6 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
 import validator from "validator";
+import addprofile from "../../components/img/addmem.png";
 
 function Copyright() {
   return (
@@ -39,8 +40,9 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center"
   },
   avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.primary.main
+    width: 120,
+    height: 120,
+    margin: theme.spacing(1)
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -86,11 +88,27 @@ export default function AddMember(props) {
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
+      <br></br>
+      <br></br>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <AddIcon />
+          <Avatar
+            className={classes.avatar}
+            alt="addprofile"
+            src={addprofile}
+          />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography
+          component="h1"
+          variant="h5"
+          style={{
+            color: "Black",
+            fontSize: 35,
+            fontFamily: "Arial",
+            textShadow:
+              "-1px -1px 1px #aaa, 1px 5px 2px rgba(255,255,255), 5px 5px 6px rgba(255,255,250), 1px 1px 8px rgba(255,255,240)"
+          }}
+        >
           Add Member Details
         </Typography>
         <form className={classes.form} noValidate>
