@@ -77,6 +77,8 @@ export default function Manager(props) {
         .then(res => {
           localStorage.setItem("managerTokken", res.data.token);
           localStorage.setItem("managerID", managerInfo.ID);
+          localStorage.setItem("managerDep", res.data.Department);
+
           console.log(res);
           props.history.push("/managerdashboard");
         })

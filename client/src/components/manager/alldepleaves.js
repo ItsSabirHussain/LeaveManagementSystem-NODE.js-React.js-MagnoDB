@@ -123,7 +123,9 @@ export default function AllDepLeaves(props) {
   useEffect(() => {
     if (alldepleave.length < 1) {
       axios
-        .post("/getdepleave", { ID: localStorage.getItem("managerID") })
+        .post("/getdepleave", {
+          Department: localStorage.getItem("managerDep")
+        })
         .then(res => {
           console.log(res);
           setAlldepleaves(res.data);

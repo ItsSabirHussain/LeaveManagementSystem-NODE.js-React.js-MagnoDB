@@ -73,6 +73,8 @@ export default function Employee(props) {
         .then(res => {
           localStorage.setItem("empTokken", res.data.token);
           localStorage.setItem("empID", empInfo.ID);
+          localStorage.setItem("empDep", res.data.Department);
+
           console.log(res);
           props.history.push("/empdashboard");
         })

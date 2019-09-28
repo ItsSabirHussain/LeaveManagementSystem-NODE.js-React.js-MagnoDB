@@ -123,7 +123,9 @@ export default function AllDepLeaves(props) {
   useEffect(() => {
     if (alldepleave.length < 1) {
       axios
-        .post("/getdepleave", { ID: localStorage.getItem("managerID") })
+        .post("/getdepleave", {
+          Department: localStorage.getItem("empDep")
+        })
         .then(res => {
           console.log(res);
           setAlldepleaves(res.data);
@@ -167,7 +169,7 @@ export default function AllDepLeaves(props) {
                   <thead>
                     <tr>
                       <th>Name</th>
-                      <th>ID</th>
+                      <th>Username</th>
                       <th>Date</th>
                       <th>Reason</th>
                       <th>Status</th>

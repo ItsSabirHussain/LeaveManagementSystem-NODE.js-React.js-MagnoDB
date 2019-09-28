@@ -68,7 +68,8 @@ router.post("/managerlogin", (req, res) => {
         (err, token) => {
           res.json({
             success: true,
-            token: "Bearer " + token
+            token: "Bearer " + token,
+            Department: manager.Department
           });
         }
       );
@@ -121,7 +122,7 @@ router.post("/mapplyleave", (req, res) => {
 
 router.post("/getdepleaves", (req, res) => {
   var dep = "";
-  Member.findOne({ ID: req.body.ID }, function(err, mem) {
+  Member.find({ Department: req.body.Department }, function(err, mem) {
     dep = mem.depopulate;
   });
   Leave.find({ Department: dep }, function(err, mem) {
