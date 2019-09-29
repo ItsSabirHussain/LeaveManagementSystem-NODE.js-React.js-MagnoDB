@@ -79,16 +79,31 @@ router.post("/hrlogin", (req, res) => {
     }
   });
 });
+function DateDiff(date1, date2) {
+  var DMY = date1.split("/"); //splits the date string by '/' and stores in a array.
+  var DMY1 = date2.split("/");
 
+  var day = DMY[0];
+  var month = DMY[1];
+  var year = DMY[2];
+
+  var day1 = DMY1[0];
+  var month1 = DMY1[1];
+  var year1 = DMY1[2];
+
+  var dateTemp1 = new Date(year, parseInt(month) - 1, day);
+  var dateTemp2 = new Date(year1, parseInt(month1) - 1, day1);
+
+  var Days = Math.ceil(
+    (dateTemp2.getTime() - dateTemp1.getTime()) / (1000 * 60 * 60 * 24)
+  );
+  return Days;
+}
 router.route("/aleave").post(function(req, res) {
   console.log(req.body.Date);
   const [s, e] = req.body.Date.toString().split("to");
-
-  const date1 = new Date(s);
-  const date2 = new Date(e);
-  const diffTime = Math.abs(date2 - date1);
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
+  diffDays = DateDiff(s, e);
+  console.log(diffDays);
   var type = "";
 
   Member.findOne({ ID: req.body.ID }, function(err, leave) {

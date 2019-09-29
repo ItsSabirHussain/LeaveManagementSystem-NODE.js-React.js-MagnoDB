@@ -85,14 +85,14 @@ export default function ApplyLeaveForm(props) {
     axios
       .post("/mapplyleave", {
         StartDate:
-          leaveDate.StartDate.Date() +
+          leaveDate.StartDate.getDate() +
           "/" +
           ms +
           "/" +
           leaveDate.StartDate.getFullYear(),
 
         EndDate:
-          leaveDate.EndDate.Date() +
+          leaveDate.EndDate.getDate() +
           "/" +
           ms +
           "/" +
